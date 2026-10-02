@@ -1,0 +1,16 @@
+node_modules/
+tests/artifacts/
+test-results/
+playwright-report/
+.env
+.env.*
+!.env.example
+playwright/.auth/
+.auth/
+auth.json
+storage-state*.json
+*.pem
+*.key
+*.log
+.DS_Store
+Thumbs.db

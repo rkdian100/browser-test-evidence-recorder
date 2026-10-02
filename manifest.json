@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "Browser Test Evidence Recorder",
+  "version": "1.3.0",
+  "description": "Capture, name, organize, and automatically download browser test evidence with sessions and test case metadata.",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs",
+    "downloads",
+    "scripting",
+    "webNavigation"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Browser Test Evidence Recorder",
+    "default_popup": "popup.html"
+  },
+  "commands": {
+    "manual_capture": {
+      "suggested_key": {
+        "default": "Alt+S",
+        "windows": "Alt+S",
+        "mac": "Alt+S",
+        "chromeos": "Alt+S",
+        "linux": "Alt+S"
+      },
+      "description": "Capture a screenshot manually"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "action-recorder.js",
+        "content.js"
+      ],
+      "run_at": "document_idle",
+      "all_frames": true,
+      "match_about_blank": true
+    }
+  ]
+}

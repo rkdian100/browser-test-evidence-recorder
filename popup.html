@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Browser Test Evidence Recorder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div>
+        <div class="eyebrow">QA TOOL · V1.3</div>
+        <h1>Browser Test Evidence Recorder</h1>
+        <p class="subtitle">Capture and review browser test evidence.</p>
+      </div>
+      <div id="statusDot" class="status-dot recording" title="Recording"></div>
+    </header>
+
+    <section class="session-card" aria-label="Test session">
+      <div class="session-row">
+        <div>
+          <span class="session-label">SESSION</span>
+          <strong id="sessionId">—</strong>
+        </div>
+        <button id="newSessionButton" class="mini-button" type="button">New Session</button>
+      </div>
+      <div class="testcase-row">
+        <label for="testCaseId">Test Case ID</label>
+        <input id="testCaseId" type="text" maxlength="40" placeholder="e.g. TC-STORE-023">
+        <button id="saveTestCaseButton" class="mini-button" type="button">Save</button>
+      </div>
+    </section>
+
+    <section class="stats" aria-label="Recording statistics">
+      <div class="stat-card"><span class="stat-label">Screenshots</span><strong id="screenshotCount">0</strong></div>
+      <div class="stat-card status-card"><span class="stat-label">Status</span><strong id="recordingStatus">Recording</strong></div>
+      <div class="stat-card"><span class="stat-label">Limit</span><strong>100</strong></div>
+    </section>
+
+    <div class="mode-row">
+      <label for="captureMode">Capture mode</label>
+      <select id="captureMode">
+        <option value="automatic">Automatic</option>
+        <option value="manual">Manual (S + click)</option>
+      </select>
+    </div>
+    <section class="controls" aria-label="Recorder controls">
+      <button id="toggleButton" class="button button-primary" type="button"><span id="toggleIcon">Ⅱ</span><span id="toggleText">Pause</span></button>
+      <button id="clearButton" class="button button-secondary" type="button">Clear</button>
+      <button id="exportButton" class="button button-secondary" type="button">Export JSON</button>
+      <button id="wordReportButton" class="button button-report" type="button">📄 Word Report</button>
+      <button id="playwrightButton" class="button button-playwright" type="button">🎭 Playwright</button>
+    </section>
+
+    <p class="recording-note"><strong id="actionCount">0</strong> Playwright actions in this session. While recording, actions are saved in both screenshot modes. Password fields use environment variables in exports.</p>
+    <div class="hint-row">
+      <span>Hold <kbd>S</kbd> + click to capture · <kbd>Alt</kbd> + <kbd>S</kbd> also works</span>
+
+    </div>
+
+    <section class="history-section">
+      <div class="section-heading"><h2>Evidence history</h2><span id="historyCountLabel" class="count-pill">0</span></div>
+      <div id="historyList" class="history-list" aria-live="polite"></div>
+      <div id="emptyState" class="empty-state">
+        <div class="empty-icon">▣</div>
+        <h3>No evidence captured yet</h3>
+        <p>Automatic: captures clicks and page loads. Manual: hold S and click outside text fields, or press Alt+S. Pause stops all captures.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="viewerModal" class="viewer-modal" hidden>
+    <div class="viewer-panel" role="dialog" aria-modal="true" aria-label="Screenshot evidence viewer">
+      <div class="viewer-toolbar">
+        <div>
+          <div class="eyebrow">SCREENSHOT EVIDENCE</div>
+          <strong id="viewerReason">—</strong>
+        </div>
+        <button id="closeViewer" class="close-viewer" type="button" aria-label="Close">×</button>
+      </div>
+
+      <div class="viewer-image-wrap">
+        <img id="viewerImage" alt="Full screenshot">
+      </div>
+
+      <div class="viewer-meta">
+        <div><span>Evidence</span><strong id="viewerEvidence">—</strong></div>
+        <div><span>Captured</span><strong id="viewerTimestamp">—</strong></div>
+        <div><span>Element</span><strong id="viewerElement">—</strong></div>
+        <div><span>Saved file</span><strong id="viewerFile">—</strong></div>
+        <div class="viewer-meta-wide"><span>URL</span><strong id="viewerUrl">—</strong></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

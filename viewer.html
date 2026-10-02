@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Evidence Viewer</title>
+  <link rel="stylesheet" href="viewer.css">
+</head>
+<body>
+  <header class="viewer-header">
+    <div>
+      <div class="eyebrow">BROWSER TEST EVIDENCE</div>
+      <h1 id="pageTitle">Screenshot Evidence</h1>
+    </div>
+    <a id="sourceLink" class="source-link" href="#" target="_blank" rel="noopener noreferrer">Open URL ↗</a>
+  </header>
+
+  <main class="viewer-main">
+    <section class="metadata-card">
+      <div class="meta-item">
+        <span>Capture reason</span>
+        <strong id="reason">—</strong>
+      </div>
+      <div class="meta-item">
+        <span>Captured at</span>
+        <strong id="timestamp">—</strong>
+      </div>
+      <div class="meta-item wide">
+        <span>URL</span>
+        <strong id="url">—</strong>
+      </div>
+      <div class="meta-item wide" id="elementBlock">
+        <span>Element</span>
+        <strong id="element">—</strong>
+      </div>
+    </section>
+
+    <section class="image-card">
+      <img id="fullScreenshot" alt="Full captured screenshot">
+      <div id="errorState" class="error-state" hidden>
+        <h2>Screenshot unavailable</h2>
+        <p>The evidence record could not be loaded from local extension storage.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="viewer.js"></script>
+</body>
+</html>
